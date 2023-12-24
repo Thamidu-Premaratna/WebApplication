@@ -33,16 +33,16 @@ public class EmployeeDao {
         System.out.println("Saved!");
         System.out.println("Absolute Path: " + file.getAbsolutePath());
         m.marshal(employee,file);
-        System.out.println("File created!");
+        System.out.println("Employee File created!");
     }
 
     //method to convert xml -> java
-//    public boolean convertXMLtoObject() throws JAXBException, FileNotFoundException {
-//        System.out.println("Converting from XML to Object -----------------");
-//        JAXBContext context = JAXBContext.newInstance(Employee.class);
-//        Unmarshaller um = context.createUnmarshaller();
-//        Employee employeeUM = (Employee) um.unmarshal(new File(filePath));
-//        System.out.println(employeeUM.getUsername()+" "+employeeUM.getPassword());
-//        return employeeUM.validate();
-//    }
+    public boolean convertXMLtoObject() throws JAXBException, FileNotFoundException {
+        System.out.println("Converting from XML to Object -----------------");
+        JAXBContext context = JAXBContext.newInstance(Employee.class);
+        Unmarshaller um = context.createUnmarshaller();
+        Employee employeeUM = (Employee) um.unmarshal(new File(filePath));
+        System.out.println(employeeUM.getEmpID()+" : "+employeeUM.getEmpFirstName());
+        return true;
+    }
 }

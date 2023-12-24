@@ -37,7 +37,7 @@ public class LoginServlet extends HttpServlet {
         Login login = new Login();
         login.setUsername(username);
         login.setPassword(password);
-        req.setAttribute("login",login);
+        req.setAttribute("login", login);
 
         try {
             // Get the servlet context
@@ -48,7 +48,10 @@ public class LoginServlet extends HttpServlet {
 
             // Instantiate the class that handles the data access
             LoginDao ldao = new LoginDao(rootPath);
-            System.out.println(ldao.convertXMLtoObject()?"Login Success":"Login not successful");;
+            System.out.println(ldao.convertXMLtoObject() ? "Login Success" : "Login not successful");
+            ;
+            System.out.println(req.getContextPath());
+            resp.setHeader("Location", req.getContextPath() + "/employee.jsp");
         } catch (JAXBException e) {
             e.printStackTrace();
         }
