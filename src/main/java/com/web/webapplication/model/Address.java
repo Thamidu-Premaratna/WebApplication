@@ -2,19 +2,18 @@ package com.web.webapplication.model;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
-@XmlRootElement(name = "address")
+// Specifying the order of the elements in the XML file
+@XmlType(propOrder = {"addressNo", "streetNo", "city", "country"})
 public class Address {
 
-    @XmlElement(name = "address-no")
     private String addressNo;
-    @XmlElement(name = "street-no")
     private String streetNo;
-    @XmlElement(name = "city")
     private String city;
-    @XmlElement(name = "country")
     private String country;
 
+    @XmlElement(name = "address-no")
     public String getAddressNo() {
         return addressNo;
     }
@@ -22,7 +21,7 @@ public class Address {
     public void setAddressNo(String addressNo) {
         this.addressNo = addressNo;
     }
-
+    @XmlElement(name = "street-no")
     public String getStreetNo() {
         return streetNo;
     }
@@ -30,7 +29,7 @@ public class Address {
     public void setStreetNo(String streetNo) {
         this.streetNo = streetNo;
     }
-
+    @XmlElement(name = "city")
     public String getCity() {
         return city;
     }
@@ -38,7 +37,7 @@ public class Address {
     public void setCity(String city) {
         this.city = city;
     }
-
+    @XmlElement(name = "country")
     public String getCountry() {
         return country;
     }

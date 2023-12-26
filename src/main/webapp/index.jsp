@@ -7,7 +7,7 @@
     <meta name="description"
           content="Library management system version 1.0"/>
     <meta charset="utf-8"/>
-    <title><%= "Login | LMS"%>></title>
+    <title>Login | LMS</title>
     <%--    Bootstrap.css link --%>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"
           integrity="sha512-b2QcS5SsA8tZodcDtGRELiGv5SaKSk1vDHDaQRda0htPYWZ6046lr3kJ5bAAQdpV2mmA/4v0wQF9MyU6/pDIAg=="
@@ -43,7 +43,7 @@
                 </div>
             </form>
             <span class="badge text-bg-danger mt-2">${error_msg}</span>
-            <a href="employee.jsp">Employee</a>
+            <a href="employeeadd.jsp">Employee</a>
         </div>
     </div>
 

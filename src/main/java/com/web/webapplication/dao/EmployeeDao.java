@@ -9,19 +9,17 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 public class EmployeeDao {
+    // File path of the web-employee.xml file
+    private final String filePath;
     // Employee Collection from the XML file
     private EmployeeCollection employeesUM;
-
     // Employee object created from the entered employee details
     private Employee employee;
-
     // Employee object created from the XML file
     private Employee employeeUM;
-
-    // File path of the web-employee.xml file
-    private String filePath;
 
     public EmployeeDao(String rootPath) {
         // relative path of the xml file
@@ -33,9 +31,10 @@ public class EmployeeDao {
         this.employee = employee;
         // Get the Employee list from existing XML file
         if (checkIfXmlFileExists()) {
-            System.out.println("Updating the xml file ------");
+            // Add the new employee to the existing list of employees
+            updateExistingXMLFile();
         } else { // web-employee.xml file doesn't exist, hence creating a new file and adding the data
-            createXmlNewFile();
+            createNewXMLFile();
         }
     }
 
@@ -46,58 +45,70 @@ public class EmployeeDao {
     //Update employee list
     public void updateEmployee(Employee employee) throws JAXBException, FileNotFoundException {
         this.employee = employee;
+
+    }
+
+    public ArrayList<Employee> getAllEmployees() throws JAXBException, FileNotFoundException {
+        // Convert XML to Object to get the Employee Collection
         convertXMLtoObject();
+        // return the list of employees
+        return (ArrayList<Employee>) this.employeesUM.getEmployees();
+
     }
 
     //Method to check if xml file is empty/exists
     public boolean checkIfXmlFileExists() throws JAXBException, FileNotFoundException {
-        System.out.println("Checking if file exists ----------------");
-        JAXBContext context = JAXBContext.newInstance(EmployeeCollection.class);
-        Unmarshaller um = context.createUnmarshaller();
-        employeesUM = (EmployeeCollection) um.unmarshal(new File(filePath));
-        if (employeesUM.getEmployees().isEmpty()) {
-            System.out.println("File is empty");
-            return false;
-        } else {
-            System.out.println("File is not empty");
-            return true;
-        }
-    }
-
-    //Method to create new web-employee.xml file
-    public void createXmlNewFile() throws JAXBException, FileNotFoundException {
-        convertObjectToXML();
+        File xmlFile = new File(this.filePath);
+        return xmlFile.exists();
     }
 
     //method to convert java -> xml
-    public void convertObjectToXML() throws JAXBException, FileNotFoundException {
+    public void createNewXMLFile() throws JAXBException, FileNotFoundException {
         // create JAXB context and instantiate marshaller
         JAXBContext context = JAXBContext.newInstance(EmployeeCollection.class);
         Marshaller m = context.createMarshaller();
         m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 
-        // Create new EmployeeCollection object to make a list of employees
+        // Create new EmployeeCollection object to make a list of employees since the xml file is empty
         EmployeeCollection employees = new EmployeeCollection();
         // Add the employee object to the list of employees
-        employees.addEmployee(employee);
+        employees.addEmployee(this.employee);
+
+        // Write to File
+        File file = new File(this.filePath);
+        m.marshal(employees, file);
+    }
+
+    // Method overloading, to add new employee to the existing list of employees
+    public void updateExistingXMLFile() throws JAXBException, FileNotFoundException {
+        // Convert XML to Object to get the existing Employee Collection in XML file
+        convertXMLtoObject();
+        // create JAXB context and instantiate marshaller
+        JAXBContext context = JAXBContext.newInstance(EmployeeCollection.class);
+        Marshaller m = context.createMarshaller();
+        m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+
+        // retrieve the existing employee list and add the new employee to the list since the xml file is not empty
+        if (this.employeesUM != null) {
+            this.employeesUM.addEmployee(this.employee);
+        } else {
+            System.out.println("Employee list is empty");
+        }
 
         // System out the entered employee details
-        m.marshal(employees, System.out);
+//        m.marshal(employees, System.out);
 
-        System.out.println("Converting from Object to XML ----------------");
         // Write to File
-        File file = new File(filePath);
-        System.out.println("Saved!");
-        m.marshal(employee, file);
-        System.out.println("Employee File created!");
+        File file = new File(this.filePath);
+        m.marshal(this.employeesUM, file);
     }
 
     //method to convert xml -> java
     public void convertXMLtoObject() throws JAXBException, FileNotFoundException {
-        System.out.println("Converting from XML to Object -----------------");
-        JAXBContext context = JAXBContext.newInstance(Employee.class);
+        JAXBContext context = JAXBContext.newInstance(EmployeeCollection.class);
         Unmarshaller um = context.createUnmarshaller();
-        Employee employeeUM = (Employee) um.unmarshal(new File(filePath));
-        System.out.println(employeeUM.getEmpID() + " : " + employeeUM.getEmpFirstName());
+        // Reading XML from the file and unmarshalling. Assigning the unmarshalled data to the employeesUM object
+        this.employeesUM = (EmployeeCollection) um.unmarshal(new File(this.filePath));
+
     }
 }

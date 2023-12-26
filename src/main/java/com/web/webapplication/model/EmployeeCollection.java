@@ -5,15 +5,16 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.List;
 
-@XmlRootElement(name = "employees")
+@XmlRootElement(name = "employee-list")
 public class EmployeeCollection {
-    @XmlElement(name = "employee")
+
     private List<Employee> employees;
 
     public EmployeeCollection() {
         employees = new ArrayList<>();
     }
 
+    @XmlElement(name = "employee")
     public List<Employee> getEmployees() {
         return employees;
     }

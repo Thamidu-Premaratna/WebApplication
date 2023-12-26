@@ -8,15 +8,16 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-@WebServlet(name = "employeeServlet", value = "/employee")
+@WebServlet(name = "addEmployeeServlet", value = "/employee-add")
 
-public class EmployeeServlet extends HttpServlet {
+public class AddEmployeeServlet extends HttpServlet {
     private final long serialVersionUID = 1L;
     private Employee employee;
     public void init() {
@@ -58,8 +59,8 @@ public class EmployeeServlet extends HttpServlet {
         employee.getEmpAddress().setCity(city);
         employee.getEmpAddress().setCountry(country);
 
-        // Creating a new EmployeeDao object
-
+        // add employee data
+        addEmployee(employee);
     }
 
     private void addEmployee(Employee employee) {
@@ -68,9 +69,9 @@ public class EmployeeServlet extends HttpServlet {
         try {
             employeeDao.addEmployee(employee);
         } catch (JAXBException e) {
-            System.out.println("Error adding employee");;
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            System.out.println("Error adding employee - jaxb");;
+        }catch (Exception e){
+            System.out.println("Error adding employee - other");
         }
     }
     public void destroy() {

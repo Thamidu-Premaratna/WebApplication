@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<employee-list>
+    <employee emp-id="1">
+        <first-name>Thamidu</first-name>
+        <last-name>Premaratna</last-name>
+        <gender>male</gender>
+        <education>University of Kelaniya</education>
+        <address>
+            <address-no>134</address-no>
+            <street-no>Royal Street</street-no>
+            <city>Colombo</city>
+            <country>Sri Lanka</country>
+        </address>
+        <birth-day>2000-06-15T00:00:00+06:00</birth-day>
+    </employee>
+    <employee emp-id="2">
+        <first-name>Thamidu</first-name>
+        <last-name>Madushan</last-name>
+        <gender>male</gender>
+        <education>University of Colombo</education>
+        <address>
+            <address-no>144</address-no>
+            <street-no>York Street</street-no>
+            <city>Galahitiyawa</city>
+            <country>Sri Lanka</country>
+        </address>
+        <birth-day>2000-11-01T00:00:00+06:00</birth-day>
+    </employee>
+</employee-list>

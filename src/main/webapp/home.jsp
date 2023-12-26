@@ -5,7 +5,7 @@
     <meta name="description"
           content="Library management system version 1.0"/>
     <meta charset="utf-8"/>
-    <title><%= "Home | LMS"%>></title>
+    <title>Home | LMS</title>
     <%--    Bootstrap.css link --%>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"
           integrity="sha512-b2QcS5SsA8tZodcDtGRELiGv5SaKSk1vDHDaQRda0htPYWZ6046lr3kJ5bAAQdpV2mmA/4v0wQF9MyU6/pDIAg=="
@@ -21,7 +21,7 @@
             <h3><%= "Welcome "%>${role}</h3>
         </div>
         <div class="col-10 offset-1 col-lg-4 offset-lg-4">
-            <button class="btn-custom-main p-3" type="button"><a class="text-decoration-none text-black" href="employee.jsp">Employee</a></button>
+            <button class="btn-custom-main p-3" type="button"><a class="text-decoration-none text-black" href="employeeview.jsp">Employee</a></button>
             <button class="btn-custom-main p-3" type="button">Bookstore</button>
         </div>
     </div>
