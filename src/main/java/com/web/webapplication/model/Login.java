@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Login {
     //    Private variables for the model
-    private String username, password;
+    private String username, password, role;
 
     public String getUsername() {
         return this.username;
@@ -27,9 +27,13 @@ public class Login {
         this.password = password;
     }
 
-
-    //Validate the login details
-    public boolean validate() {
-        return this.username.equals("admin") && this.password.equals("admin");
+    public String getRole() {
+        return role;
     }
+
+    @XmlElement
+    public void setRole(String role) {
+        this.role = role;
+    }
+
 }

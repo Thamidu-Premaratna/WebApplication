@@ -17,15 +17,13 @@
             rel="stylesheet"
             href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
     <style>
-        body
-        {
+        body {
             /*background-image: url('path/to/your/suitable/background.jpg');*/
             /* Replace with your background image path */
             background-size: cover;
         }
 
-        .form-container
-        {
+        .form-container {
             background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background for better readability */
             border-radius: 15px;
             padding: 30px;
@@ -33,13 +31,11 @@
             max-width: 500px;
         }
 
-        .valid
-        {
+        .valid {
             border-color: green;
         }
 
-        .invalid
-        {
+        .invalid {
             border-color: red;
         }
     </style>
@@ -47,100 +43,55 @@
 <body>
 <div class="form-container">
     <h2 class="text-center mb-4">Employee Details Form</h2>
-    <form id="employee-form">
+    <form id="employee-form" action="${pageContext.request.contextPath}/employee" method="post">
         <div class="form-group">
             <label for="employeeId">Employee ID:</label>
-            <input
-                    type="text"
-                    class="form-control"
-                    id="employeeId"
-                    required>
+            <input name="empId" type="text" class="form-control" id="employeeId" required>
         </div>
-        <div
-                class="form-group">
-            <label
-                    for="firstName">First Name:</label>
-            <input
-                    type="text"
-                    class="form-control"
-                    id="firstName"
-                    required>
+        <div class="form-group">
+            <label for="firstName">First Name:</label>
+            <input name="fname" type="text" class="form-control" id="firstName" required>
         </div>
-        <div
-                class="form-group">
-            <label
-                    for="lastName">Last Name:</label>
-            <input
-                    type="text"
-                    class="form-control"
-                    id="lastName"
-                    required>
+        <div class="form-group">
+            <label for="lastName">Last Name:</label>
+            <input name="lname" type="text" class="form-control" id="lastName" required>
         </div>
-        <div
-                class="form-group">
+        <div class="form-group">
             <label>Gender:</label>
-            <div
-                    class="form-check">
-                <input
-                        class="form-check-input"
-                        type="radio"
-                        name="gender"
-                        id="male"
-                        value="male"
-                        required>
-                <label
-                        class="form-check-label"
-                        for="male">Male</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="gender" id="male" value="male" required>
+                <label class="form-check-label" for="male">Male</label>
             </div>
-            <div
-                    class="form-check">
-                <input class="form-check-input"
-                       type="radio"
-                       name="gender"
-                       id="female"
-                       value="female">
-                <label
-                        class="form-check-label"
-                        for="female">Female</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="gender" id="female" value="female">
+                <label class="form-check-label" for="female">Female</label>
             </div>
         </div>
         <div class="form-group">
-            <label
-                    for="education">Education:</label>
-            <input
-                    type="text" class="form-control" id="education" required>
+            <label for="edu">Education:</label>
+            <input name="education" type="text" class="form-control" id="edu" required>
         </div>
         <div class="form-group">
-            <label
-                    for="address">Address:</label>
-
-            <textarea
-                    class="form-control"
-                    id="address"
-                    rows="3"
-                    required></textarea>
-
+            <label for="addno">Address No:</label>
+            <input name="addressNo" type="text" class="form-control" id="addno" required>
         </div>
-        <div
-                class="form-group">
-            <label
-                    for="country">Country:</label>
-            <select
-                    class="form-select" id="country" required>
-            </select>
+        <div class="form-group">
+            <label for="streetno">Street:</label>
+            <input name="streetNo" type="text" class="form-control" id="streetno" required>
+        </div>
+        <div class="form-group">
+            <label for="cityno">City:</label>
+            <input name="city" type="text" class="form-control" id="cityno" required>
+        </div>
+        <div class="form-group">
+            <label for="countryno">Country:</label>
+            <input name="country" type="text" class="form-control" id="countryno" required>
         </div>
         <div class="form-group">
             <label for="birthday">Birthday:</label>
-            <input
-                    type="date"
-                    class="form-control"
-                    id="birthday"
-                    required>
+            <input name="dob" type="date" class="form-control" id="birthday" required>
         </div>
-        <button
-                type="submit"
-                class="btn btn-primary mt-4">Submit
-        </button>
+        <button type="submit" class="btn btn-primary mt-4" value="Refresh">Add new Employee</button>
     </form>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.min.js"

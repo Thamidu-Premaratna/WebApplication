@@ -18,9 +18,10 @@
     <div class="row">
         <div class="col-12 text-center mt-custom">
             <h1>Library Management System</h1>
+            <h3><%= "Welcome "%>${role}</h3>
         </div>
         <div class="col-10 offset-1 col-lg-4 offset-lg-4">
-            <button class="btn-custom-main p-3" type="button">Employee</button>
+            <button class="btn-custom-main p-3" type="button"><a class="text-decoration-none text-black" href="employee.jsp">Employee</a></button>
             <button class="btn-custom-main p-3" type="button">Bookstore</button>
         </div>
     </div>

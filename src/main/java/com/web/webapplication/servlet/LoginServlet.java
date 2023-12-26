@@ -1,6 +1,7 @@
 package com.web.webapplication.servlet;
 
 import java.io.*;
+import java.util.Objects;
 
 import com.web.webapplication.dao.LoginDao;
 import com.web.webapplication.model.Login;
@@ -26,19 +27,23 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
         resp.setContentType("text/html");
 
         //Storing the parameters as variables
         String username = req.getParameter("username");
         String password = req.getParameter("password");
 
-        //Create new Login object
+        //Create new Login object to store the parameters
         Login login = new Login();
         login.setUsername(username);
         login.setPassword(password);
-        req.setAttribute("login", login);
 
+        //Setting the role of the user
+        if(username.equals("admin")) {
+            login.setRole("admin");
+        } else {
+            login.setRole("user");
+        }
         try {
             // Get the servlet context
             ServletContext context = getServletContext();
@@ -47,11 +52,22 @@ public class LoginServlet extends HttpServlet {
             String rootPath = context.getRealPath("/");
 
             // Instantiate the class that handles the data access
-            LoginDao ldao = new LoginDao(rootPath);
-            System.out.println(ldao.convertXMLtoObject() ? "Login Success" : "Login not successful");
-            ;
-            System.out.println(req.getContextPath());
-            resp.setHeader("Location", req.getContextPath() + "/employee.jsp");
+            LoginDao loginDao = new LoginDao(rootPath, login);
+
+            //Check if the login is successful and get the role of the user
+            String msg = loginDao.getLogin();
+            System.out.println(" --Login Servlet-- "+msg);
+            if(msg.equals("ok")) {
+                // Move to home.jsp with the login attributes
+                System.out.println("-- Login successful --");
+                req.setAttribute("role", login.getRole());
+                req.getRequestDispatcher("home.jsp").forward(req, resp);
+            } else {
+                // Move to index.jsp with the error message
+                System.out.println("-- Login failed --");
+                req.setAttribute("error_msg", msg);
+                req.getRequestDispatcher("index.jsp").forward(req, resp);
+            }
         } catch (JAXBException e) {
             e.printStackTrace();
         }
