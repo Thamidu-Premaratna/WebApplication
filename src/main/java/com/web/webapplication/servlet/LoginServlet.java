@@ -1,7 +1,6 @@
 package com.web.webapplication.servlet;
 
 import java.io.*;
-import java.util.Objects;
 
 import com.web.webapplication.dao.LoginDao;
 import com.web.webapplication.model.Login;
@@ -56,15 +55,12 @@ public class LoginServlet extends HttpServlet {
 
             //Check if the login is successful and get the role of the user
             String msg = loginDao.getLogin();
-            System.out.println(" --Login Servlet-- "+msg);
             if(msg.equals("ok")) {
-                // Move to home.jsp with the login attributes
-                System.out.println("-- Login successful --");
+                // Move to employeeview.jsp with the login attributes
                 req.setAttribute("role", login.getRole());
-                req.getRequestDispatcher("home.jsp").forward(req, resp);
+                req.getRequestDispatcher("employeeview.jsp").forward(req, resp);
             } else {
                 // Move to index.jsp with the error message
-                System.out.println("-- Login failed --");
                 req.setAttribute("error_msg", msg);
                 req.getRequestDispatcher("index.jsp").forward(req, resp);
             }

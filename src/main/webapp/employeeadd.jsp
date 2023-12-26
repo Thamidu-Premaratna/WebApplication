@@ -1,12 +1,13 @@
+<%@ page import="java.util.Objects" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Library management system version 1.0"/>
+    <meta name="description" content="Employee management system version 1.0"/>
 
-    <title>Employee | LMS </title>
+    <title>Employee - Add | EMS </title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
           rel="stylesheet"
@@ -31,10 +32,14 @@
         }
     </style>
 </head>
-<body>
+<body class="bg-light">
+<%
+    String error_msg = "";
+
+%>
 <nav class="navbar navbar-dark sticky-top navbar-expand-lg bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="home.jsp">Home</a>
+        <a class="navbar-brand" href="employeeview.jsp">EMPLOYEE</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -42,13 +47,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="employeeview.jsp">Employee View</a>
+                    <a class="nav-link" aria-current="page" href="employeeview.jsp">VIEW</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="employeeadd.jsp">Employee Add</a>
+                    <a class="nav-link active" href="employeeadd.jsp">ADD</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="employeeupdate.jsp">Employee Update</a>
+                    <a class="nav-link" href="employeeupdate.jsp">UPDATE</a>
                 </li>
             </ul>
         </div>
@@ -57,24 +62,35 @@
 <div class="container-fluid bg-light">
     <div class="row">
         <div class="col-12">
-            <div class="row form-container">
+            <div class="row form-container bg-light">
                 <h2 class="col-12 text-center mb-4">Employee Details Form</h2>
                 <form class="col-12 col-md-6 offset-md-3" id="employee-form"
                       action="${pageContext.request.contextPath}/employee-add" method="post">
                     <div class="row">
+                        <div class="col-12">
+                            <%
+                                if (request.getAttribute("error_msg") != null) {
+                                    error_msg = (String) request.getAttribute("error_msg");
+                                }
+                            %>
+                            <div class=" <% if(!Objects.equals(error_msg, "")){out.print("alert alert-danger");}%>"
+                                 role="alert">
+                                ${error_msg}
+                            </div>
+                        </div>
                         <div class="col-12 col-md-4 mb-3">
                             <label for="employeeId">Employee ID:</label>
-                            <input name="empId" type="text" class="form-control" id="employeeId" required>
+                            <input name="empId" type="number" class="form-control" id="employeeId">
                         </div>
                         <div class="col-12">
                             <div class="row">
                                 <div class="col-12 col-md-6 mb-3">
                                     <label for="firstName">First Name:</label>
-                                    <input name="fname" type="text" class="form-control" id="firstName" required>
+                                    <input name="fname" type="text" class="form-control" id="firstName">
                                 </div>
                                 <div class="col-12 col-md-6 mb-3">
                                     <label for="lastName">Last Name:</label>
-                                    <input name="lname" type="text" class="form-control" id="lastName" required>
+                                    <input name="lname" type="text" class="form-control" id="lastName">
                                 </div>
                             </div>
                         </div>
@@ -82,7 +98,7 @@
                             <label>Gender:</label>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="gender" id="male" value="male"
-                                       required>
+                                >
                                 <label class="form-check-label" for="male">Male</label>
                             </div>
                             <div class="form-check">
@@ -92,27 +108,27 @@
                         </div>
                         <div class="col-12 mb-3">
                             <label for="edu">Education:</label>
-                            <input name="education" type="text" class="form-control" id="edu" required>
+                            <input name="education" type="text" class="form-control" id="edu">
                         </div>
                         <div class="col-4 col-md-3 mb-3">
                             <label for="addno">Address No:</label>
-                            <input name="addressNo" type="text" class="form-control" id="addno" required>
+                            <input name="addressNo" type="text" class="form-control" id="addno">
                         </div>
                         <div class="col-8 col-md-9 mb-3">
                             <label for="streetno">Street:</label>
-                            <input name="streetNo" type="text" class="form-control" id="streetno" required>
+                            <input name="streetNo" type="text" class="form-control" id="streetno">
                         </div>
                         <div class="col-6 mb-3">
                             <label for="cityno">City:</label>
-                            <input name="city" type="text" class="form-control" id="cityno" required>
+                            <input name="city" type="text" class="form-control" id="cityno">
                         </div>
                         <div class="col-6 mb-3">
                             <label for="countryno">Country:</label>
-                            <input name="country" type="text" class="form-control" id="countryno" required>
+                            <input name="country" type="text" class="form-control" id="countryno">
                         </div>
                         <div class="col-12 mb-3">
                             <label for="birthday">Birthday:</label>
-                            <input name="dob" type="date" class="form-control" id="birthday" required>
+                            <input name="dob" type="date" class="form-control" id="birthday">
                         </div>
                     </div>
                     <button type="submit" class="col-12 w-100 btn btn-primary mt-4" value="Refresh">Add new Employee

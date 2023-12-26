@@ -3,9 +3,9 @@
 <head>
     <%--    meta tags --%>
     <meta name="description"
-          content="Library management system version 1.0"/>
+          content="Employee management system version 1.0"/>
     <meta charset="utf-8"/>
-    <title>Employee Update | LMS</title>
+    <title>Employee Update | EMS</title>
     <%--    Bootstrap.css link --%>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"
           integrity="sha512-b2QcS5SsA8tZodcDtGRELiGv5SaKSk1vDHDaQRda0htPYWZ6046lr3kJ5bAAQdpV2mmA/4v0wQF9MyU6/pDIAg=="
@@ -13,10 +13,10 @@
     <%--    Custom css --%>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="bg-light">
 <nav class="navbar navbar-dark sticky-top navbar-expand-lg bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="home.jsp">Home</a>
+        <a class="navbar-brand" href="employeeview.jsp">EMPLOYEE</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -24,19 +24,19 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="employeeview.jsp">Employee View</a>
+                    <a class="nav-link" aria-current="page" href="employeeview.jsp">VIEW</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="employeeadd.jsp">Employee Add</a>
+                    <a class="nav-link" href="employeeadd.jsp">ADD</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="employeeupdate.jsp">Employee Update</a>
+                    <a class="nav-link active" href="employeeupdate.jsp">UPDATE</a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
-<div class="container-fluid">
+<div class="container-fluid bg-light">
     <div class="row">
         <div class="col-12">
 

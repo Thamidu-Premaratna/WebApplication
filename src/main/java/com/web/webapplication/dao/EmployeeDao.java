@@ -27,6 +27,36 @@ public class EmployeeDao {
         this.filePath = rootPath + relativePath;
     }
 
+    // Search employee by ID
+    public Employee getEmployeeById(int empID) throws JAXBException, FileNotFoundException {
+        // Convert XML to Object to get the Employee Collection
+        convertXMLtoObject();
+        // return the list of employees
+        if (this.employeesUM != null) {
+            for (Employee employee : this.employeesUM.getEmployees()) {
+                if (employee.getEmpID() == empID) {
+                    return employee;
+                }
+            }
+        }
+        return null;
+    }
+
+    // Search employee by name
+    public Employee getEmployeeByName(String empFirstName) throws JAXBException, FileNotFoundException {
+        // Convert XML to Object to get the Employee Collection
+        convertXMLtoObject();
+        // return the list of employees
+        if (this.employeesUM != null) {
+            for (Employee employee : this.employeesUM.getEmployees()) {
+                if (employee.getEmpFirstName().equals(empFirstName)) {
+                    return employee;
+                }
+            }
+        }
+        return null;
+    }
+
     public void addEmployee(Employee employee) throws JAXBException, FileNotFoundException {
         this.employee = employee;
         // Get the Employee list from existing XML file

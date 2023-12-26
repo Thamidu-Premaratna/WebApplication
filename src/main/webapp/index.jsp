@@ -5,9 +5,9 @@
 <head>
     <%--    meta tags --%>
     <meta name="description"
-          content="Library management system version 1.0"/>
+          content="Employee management system version 1.0"/>
     <meta charset="utf-8"/>
-    <title>Login | LMS</title>
+    <title>Login | EMS</title>
     <%--    Bootstrap.css link --%>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"
           integrity="sha512-b2QcS5SsA8tZodcDtGRELiGv5SaKSk1vDHDaQRda0htPYWZ6046lr3kJ5bAAQdpV2mmA/4v0wQF9MyU6/pDIAg=="
