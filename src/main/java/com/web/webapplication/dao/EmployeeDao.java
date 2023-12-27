@@ -69,12 +69,44 @@ public class EmployeeDao {
     }
 
     public void removeEmployee(Employee employee) throws JAXBException, FileNotFoundException {
-        this.employee = employee;
+        int id = employee.getEmpID(); // Unique Id to identify the employee
+        // Convert XML to Object to get the Employee Collection
+        convertXMLtoObject();
+        // Using iterator to remove the employee from the list
+        if (this.employeesUM != null) {
+            for (Employee employeeUM : this.employeesUM.getEmployees()) {
+                if (employeeUM.getEmpID() == id) {
+                    this.employeesUM.getEmployees().remove(employeeUM);
+                    break;
+                }
+            }
+        }
     }
 
     //Update employee list
     public void updateEmployee(Employee employee) throws JAXBException, FileNotFoundException {
-        this.employee = employee;
+        int id = employee.getEmpID(); // Unique Id to identify the employee
+        // Convert XML to Object to get the Employee Collection
+        convertXMLtoObject();
+        // Using iterator to update the employee from the list
+        if (this.employeesUM != null) {
+            for (Employee employeeUM : this.employeesUM.getEmployees()) {
+                if (employeeUM.getEmpID() == id) {
+                    //update the employee fields with the new values
+                    employeeUM.setEmpFirstName(employee.getEmpFirstName());
+                    employeeUM.setEmpLastName(employee.getEmpLastName());
+                    employeeUM.setEmpGender(employee.getEmpGender());
+                    employeeUM.setEmpEducation(employee.getEmpEducation());
+                    employeeUM.setEmpAddress(employee.getEmpAddress());
+                    employeeUM.setEmpBirthDay(employee.getEmpBirthDay());
+                    this.employee = employeeUM;
+                    //remove the old employee object and add the updated employee object
+                    this.employeesUM.getEmployees().remove(employeeUM);
+                    updateExistingXMLFile();
+                    break;
+                }
+            }
+        }
 
     }
 

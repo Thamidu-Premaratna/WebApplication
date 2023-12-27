@@ -43,7 +43,6 @@
                 </div>
             </form>
             <span class="badge text-bg-danger mt-2">${error_msg}</span>
-            <a href="employeeadd.jsp">Employee</a>
         </div>
     </div>
 
