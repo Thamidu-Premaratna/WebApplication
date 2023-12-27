@@ -36,7 +36,7 @@
 <body class="bg-light">
 <nav class="navbar navbar-dark sticky-top navbar-expand-lg bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="employeeview.jsp">EMPLOYEE</a>
+        <a class="navbar-brand" href="employeeview.jsp">EMS</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -47,7 +47,7 @@
                     <a class="nav-link active" aria-current="page" href="employeeview.jsp">VIEW</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="employeeadd.jsp">ADD</a>
+                    <a class="nav-link " href="employeeadd.jsp">ADD</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="employeeupdate.jsp">UPDATE</a>
@@ -88,14 +88,11 @@
             <%
                 Employee employee = null;
                 if(request.getAttribute("employee") != null){
-                    System.out.println("Inside view employee object set -----");
                     employee = (Employee) request.getAttribute("employee");
-                    System.out.println("View employee object set -----");
                 }
 
                 // If there is an employee object then display it
                 if(employee != null ){
-                    System.out.println("Employee object is not null -----");
                     out.print("<div class=\"table-responsive my-3\">");
                     out.print("<table class=\"table mx-auto caption-top\">");
                     out.print("<caption>List of Employees</caption>");
@@ -123,7 +120,6 @@
                     out.print("</tbody>");
                     out.print("</table>");
                 }else if ((ArrayList<Employee>) request.getAttribute("employees") != null) { // If there is an employee list then display it after checking if a single employee object is not present
-                    System.out.println("Employee list is not null -----");
                     out.print("<div class=\"table-responsive my-3\">");
                     out.print("<table class=\"table mx-auto caption-top\">");
                     out.print("<caption>List of Employees</caption>");
@@ -154,14 +150,12 @@
                     out.print("</tbody>");
                     out.print("</table>");
                 } else {
-                    System.out.println("Error message -----");
                     // If there is an error message from the servlet then display it
-                    if(request.getParameter("error_msg") != null){
+                    if(request.getAttribute("error_msg") != null){
                         out.println("<div class=\"alert alert-danger my-3\" role=\"alert\">\n" +
-                                "  " + request.getParameter("error_msg") + "\n" +
+                                "  " + request.getAttribute("error_msg") + "\n" +
                                 "</div>");
                     }else{ // If there is no error message from the servlet then display no results
-                        System.out.println("No results to show -----");
                         out.println("<div class=\"alert alert-warning my-3\" role=\"alert\">\n" +
                                 "  No results to show\n" +
                                 "</div>");

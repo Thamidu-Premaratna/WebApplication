@@ -31,14 +31,12 @@ public class ViewEmployeeServlet extends HttpServlet {
 
         if (searchInput.equals("default")) {
             try {
-                System.out.println("View Employee Servlet default ------");
                 // Get all employees as an array list
                 employees = employeeDao.getAllEmployees();
                 System.out.println(employees.size());
                 // Send the employee list to the view-employee.jsp
                 req.setAttribute("employees", employees);
                 req.getRequestDispatcher("employeeview.jsp").forward(req, resp);
-                System.out.println("View Employee Servlet redirected ------");
             } catch (JAXBException | FileNotFoundException e) {
                 e.printStackTrace();
             } catch (ServletException e) {
@@ -56,16 +54,13 @@ public class ViewEmployeeServlet extends HttpServlet {
                     employee = employeeDao.getEmployeeByName(searchInput);
                 }
                 if (employee != null) {
-                    System.out.println("Employee found ------");
                     // Display the employee details
                     req.setAttribute("employee", employee);
                     req.getRequestDispatcher("employeeview.jsp").forward(req, resp);
                 } else {
-                    System.out.println("Employee not found ------");
                     // Display error message
                     req.setAttribute("error_msg", "Employee not found");
                     req.getRequestDispatcher("employeeview.jsp").forward(req, resp);
-                    System.out.println("redirected ------");
                 }
             } catch (JAXBException | FileNotFoundException e) {
                 e.printStackTrace();

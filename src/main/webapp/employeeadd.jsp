@@ -14,23 +14,7 @@
           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
           crossorigin="anonymous">
     <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
-    <style>
 
-        .form-container {
-            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background for better readability */
-            border-radius: 15px;
-            padding: 30px;
-            margin: 100px auto; /* Center the form horizontally */
-        }
-
-        .valid {
-            border-color: green;
-        }
-
-        .invalid {
-            border-color: red;
-        }
-    </style>
 </head>
 <body class="bg-light">
 <%
@@ -39,7 +23,7 @@
 %>
 <nav class="navbar navbar-dark sticky-top navbar-expand-lg bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="employeeview.jsp">EMPLOYEE</a>
+        <a class="navbar-brand" href="employeeview.jsp">EMS</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -60,7 +44,7 @@
     </div>
 </nav>
 <div class="container-fluid bg-light">
-    <div class="row">
+    <div class="row mt-4">
         <div class="col-12">
             <div class="row form-container bg-light">
                 <h2 class="col-12 text-center mb-4">Employee Details Form</h2>
